@@ -1,0 +1,16 @@
+<template>
+    <lightning-card>
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="2" padding="around-small">
+                <lightning-select data-id="available-numbers" name="numbers"
+                    options={options} value={selectedNumbers} multiple
+                    onchange={changeNumbers}>
+                </lightning-select>
+                Selected: <lightning-formatted-text data-id="selected-numbers" value={selectedNumbers}></lightning-formatted-text>
+            </lightning-layout-item>
+            <lightning-layout-item size="2" padding="around-small">
+                <lightning-input type="number" label="Target Number"></lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

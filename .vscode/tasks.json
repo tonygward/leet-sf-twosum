@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "apex deploy and test",
+			"type": "shell",
+			"command": "sf project deploy start --tests TwoSumTests",
+			"group": {
+				"isDefault": true
+			},
+		}
+	]
+}

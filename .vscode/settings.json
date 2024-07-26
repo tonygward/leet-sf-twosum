@@ -1,0 +1,14 @@
+{
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.sfdx": true
+  },
+  "triggerTaskOnSave.tasks": {
+    "apex deploy and test": [
+      "*.cls"
+    ]
+  },
+  "triggerTaskOnSave.selectedTask": "apex deploy and test",
+  "salesforcedx-vscode-core.retrieve-test-code-coverage": true
+}
