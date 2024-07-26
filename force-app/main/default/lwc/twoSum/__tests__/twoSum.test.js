@@ -62,7 +62,24 @@ describe('c-two-sum', () => {
         const run = element.shadowRoot.querySelector('lightning-button');
         expect(run.disabled).toBe(false);
     });
+
+    it('run', async () => {
+        const element = newComponent();
+        await selectNumbers(element, [1, 2]);
+        await setTarget(element, 3);
+        await run(element);
+
+        const actual = element.shadowRoot.querySelector('lightning-formatted-text[data-id="result"]');
+        expect(actual).not.toBeNull();
+        expect(actual.value).toBe('0,1');
+    });
 });
+
+async function run(element) {
+    const button = element.shadowRoot.querySelector('lightning-button');
+    button.click();
+    await flushPromises();
+}
 
 async function setTarget(element, value) {
     const target = element.shadowRoot.querySelector('lightning-input[data-id="target"]');

@@ -1,5 +1,6 @@
 <template>
     <lightning-card>
+
         <lightning-layout multiple-rows>
             <lightning-layout-item size="2" padding="around-small">
                 <lightning-select data-id="available-numbers" name="numbers"
@@ -12,10 +13,18 @@
                 <lightning-input data-id="target" type="number" label="Target Number" min="0" value={target} onchange={targetChanged}></lightning-input>
             </lightning-layout-item>
         </lightning-layout>
+
         <lightning-layout>
             <lightning-layout-item padding="around-small">
-                <lightning-button label="Run" disabled={runDisabled}></lightning-button>
+                <lightning-button label="Run" disabled={runDisabled} onclick={run} value={result}></lightning-button>
             </lightning-layout-item>
         </lightning-layout>
+
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <lightning-formatted-text data-id="result" value={result}></lightning-formatted-text>
+            </lightning-layout-item>
+        </lightning-layout>
+
     </lightning-card>
 </template>
