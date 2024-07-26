@@ -37,10 +37,43 @@ describe('c-two-sum', () => {
     it('select numbers 1 and 2', async () => {
         const element = newComponent();
         await selectNumbers(element, [1, 2]);
+
         const actual = element.shadowRoot.querySelector('lightning-formatted-text[data-id="selected-numbers"]');
         expect(actual.value).toBe('1,2');
+
+        const run = element.shadowRoot.querySelector('lightning-button');
+        expect(run.disabled).toBe(true);
+    });
+
+    it('select numbers and invalid target disables run button', async () => {
+        const element = newComponent();
+        await selectNumbers(element, [1, 2]);
+        await setTarget(element, 0);
+
+        const run = element.shadowRoot.querySelector('lightning-button');
+        expect(run.disabled).toBe(true);
+    });
+
+    it('select numbers and valid target enables run button', async () => {
+        const element = newComponent();
+        await selectNumbers(element, [1, 2]);
+        await setTarget(element, 3);
+
+        const run = element.shadowRoot.querySelector('lightning-button');
+        expect(run.disabled).toBe(false);
     });
 });
+
+async function setTarget(element, value) {
+    const target = element.shadowRoot.querySelector('lightning-input[data-id="target"]');
+    target.value = value;
+    const targetChanged = new CustomEvent(
+        'change',
+        { detail: { value: value}}
+    );
+    target.dispatchEvent(targetChanged);
+    await flushPromises();
+}
 
 async function selectNumbers(element, values) {
     const numbers = element.shadowRoot.querySelector('lightning-select[data-id="available-numbers"]');

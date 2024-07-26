@@ -19,4 +19,21 @@ export default class TwoSum extends LightningElement {
     get selectedNumbers() {
         return this.numbers.join(',');
     }
+
+    target = 0;
+
+    targetChanged(event) {
+        this.target = event.detail.value;
+        console.log('set target to ' + this.target);
+    }
+
+    get runDisabled() {
+        console.log('target is ' + this.target);
+        if (this.target > 0) {
+            console.log('run enabled');
+            return false;
+        }
+        console.log('run disabled');
+        return true;
+    }
 }

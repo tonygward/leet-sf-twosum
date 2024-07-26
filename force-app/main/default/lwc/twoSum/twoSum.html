@@ -9,8 +9,9 @@
                 Selected: <lightning-formatted-text data-id="selected-numbers" value={selectedNumbers}></lightning-formatted-text>
             </lightning-layout-item>
             <lightning-layout-item size="2" padding="around-small">
-                <lightning-input type="number" label="Target Number"></lightning-input>
+                <lightning-input data-id="target" type="number" label="Target Number" min="0" value={target} onchange={targetChanged}></lightning-input>
             </lightning-layout-item>
+            <lightning-button label="run" disabled={runDisabled}></lightning-button>
         </lightning-layout>
     </lightning-card>
 </template>
