@@ -40,7 +40,7 @@ export default class TwoSum extends LightningElement {
             nums: this.numbers,
             target: this.target
         }).then((result) => {
-            this.result = 'entries ' + result.join(',') + ' add up to ' + this.target;
+            this.result = `entries ${result.join(',')} add up to ${this.target}`;
         });
     }
 }

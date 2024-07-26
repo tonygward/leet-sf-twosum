@@ -1,7 +1,7 @@
-public with sharing class TwoSum {
+public with sharing class TwoSum { // NOPMD
 
     @AuraEnabled(cacheable=true)
-    public static List<Integer> check(List<Integer> nums, Integer target) {
+    public static List<Integer> check(List<Integer> nums, Integer target) { // NOPMD
         Map<Integer, Integer> numbers = new Map<Integer, Integer>();
         List<Integer> matches = new List<Integer>();
 
