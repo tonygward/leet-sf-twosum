@@ -14,11 +14,4 @@ public with sharing class TwoSumTests {
         List<Integer> expected = new List<Integer> { 1, 2 };
         System.Assert.areEqual(expected, TwoSum.check(input, 6));
     }
-
-    // @isTest
-    // static void returns6Again(){
-    //     List<Integer> input = new List<Integer> { 3, 2, 4 };
-    //     List<Integer> expected = new List<Integer> { 1, 2 };
-    //     System.Assert.areEqual(expected, TwoSum.check(input, 6));
-    // }
 }

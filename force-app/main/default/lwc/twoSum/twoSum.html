@@ -15,13 +15,8 @@
         </lightning-layout>
 
         <lightning-layout>
-            <lightning-layout-item padding="around-small">
-                <lightning-button label="Run" disabled={runDisabled} onclick={run} value={result}></lightning-button>
-            </lightning-layout-item>
-        </lightning-layout>
-
-        <lightning-layout>
-            <lightning-layout-item padding="around-small">
+            <lightning-layout-item size="2" padding="around-small">
+                <lightning-button label="Run" disabled={runDisabled} onclick={run} value={result} class="slds-var-p-right_small"></lightning-button>
                 <lightning-formatted-text data-id="result" value={result}></lightning-formatted-text>
             </lightning-layout-item>
         </lightning-layout>

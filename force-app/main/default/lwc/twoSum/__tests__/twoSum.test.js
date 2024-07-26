@@ -1,5 +1,14 @@
 import { createElement } from 'lwc';
 import TwoSum from 'c/twoSum';
+import runTwoSum from '@salesforce/apex/TwoSum.check';
+
+jest.mock(
+    '@salesforce/apex/TwoSum.check',
+    () => ({
+        default: jest.fn()
+    }),
+    { virtual: true }
+);
 
 describe('c-two-sum', () => {
     afterEach(() => {
@@ -41,8 +50,8 @@ describe('c-two-sum', () => {
         const actual = element.shadowRoot.querySelector('lightning-formatted-text[data-id="selected-numbers"]');
         expect(actual.value).toBe('1,2');
 
-        const run = element.shadowRoot.querySelector('lightning-button');
-        expect(run.disabled).toBe(true);
+        const button = element.shadowRoot.querySelector('lightning-button');
+        expect(button.disabled).toBe(true);
     });
 
     it('select numbers and invalid target disables run button', async () => {
@@ -50,8 +59,8 @@ describe('c-two-sum', () => {
         await selectNumbers(element, [1, 2]);
         await setTarget(element, 0);
 
-        const run = element.shadowRoot.querySelector('lightning-button');
-        expect(run.disabled).toBe(true);
+        const button = element.shadowRoot.querySelector('lightning-button');
+        expect(button.disabled).toBe(true);
     });
 
     it('select numbers and valid target enables run button', async () => {
@@ -59,19 +68,28 @@ describe('c-two-sum', () => {
         await selectNumbers(element, [1, 2]);
         await setTarget(element, 3);
 
-        const run = element.shadowRoot.querySelector('lightning-button');
-        expect(run.disabled).toBe(false);
+        const button = element.shadowRoot.querySelector('lightning-button');
+        expect(button.disabled).toBe(false);
     });
 
     it('run', async () => {
+        const results = [ 0, 1 ];
+        runTwoSum.mockResolvedValue(results);
         const element = newComponent();
+
         await selectNumbers(element, [1, 2]);
         await setTarget(element, 3);
         await run(element);
 
+        const expectedParams = {
+            nums: [1, 2],
+            target: 3
+        };
+        expect(runTwoSum.mock.calls[0][0]).toStrictEqual(expectedParams);
+
         const actual = element.shadowRoot.querySelector('lightning-formatted-text[data-id="result"]');
         expect(actual).not.toBeNull();
-        expect(actual.value).toBe('0,1');
+        expect(actual.value).toBe('entries 0,1 add up to 3');
     });
 });
 

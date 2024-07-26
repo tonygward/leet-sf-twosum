@@ -1,6 +1,10 @@
 public with sharing class TwoSum {
 
+    @AuraEnabled(cacheable=true)
     public static List<Integer> check(List<Integer> nums, Integer target) {
+        System.debug(nums);
+        System.debug(target);
+
         Map<Integer, Integer> numbers = new Map<Integer, Integer>();
         List<Integer> matches = new List<Integer>();
 

@@ -1,4 +1,5 @@
 import { LightningElement } from 'lwc';
+import runTwoSum from '@salesforce/apex/TwoSum.check';
 
 export default class TwoSum extends LightningElement {
 
@@ -35,6 +36,11 @@ export default class TwoSum extends LightningElement {
 
     result = '';
     run() {
-        this.result = '0,1';
+        runTwoSum({
+            nums: this.numbers,
+            target: this.target
+        }).then((result) => {
+            this.result = 'entries ' + result.join(',') + ' add up to ' + this.target;
+        });
     }
 }
